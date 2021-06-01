@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // mongoose란 mongoDB라는 NoSQL 데이터베이스를 지원하는 노드의 확장모듈이다.
 
 const userSchema = mongoose.Schema({
     name: {

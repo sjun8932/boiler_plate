@@ -4,6 +4,8 @@ const port = 5000
 //const bodyParser = require('body-parser'); // Package에서 설치했던 body-parser를 가져온다.
 // express 4.16 이하 버전에서는 4번줄과 같이 bodyParser 변수를 만들고 해야됨.
 
+const config = require('./config/key.js');
+
 const { User } = require("./models/User"); // User.js에서 User 모델을 가져오는 작업
 
 app.use(express.urlencoded({extended: false}));
@@ -14,12 +16,12 @@ app.use(express.json());
 
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://sangjun:Itsme2020!@jun.mkfsp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false // 7번줄은 갖가지 에러 방지용 설정이니 잘 몰라도 상관 없다.
 }).then(() => console.log("연결이 성공하였습니다."))
   .catch(err => console.log(err))
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('햄버거가 먹고픈 날'))
 
 app.post('/register', (req, res) => {
 
