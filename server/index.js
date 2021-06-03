@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const port = 5000
+
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
 const { auth } = require('./middleware/auth')
@@ -24,6 +24,10 @@ mongoose.connect(config.mongoURI, {
   .catch(err => console.log(err))
 
 app.get('/', (req, res) => res.send('햄버거가 먹고픈 날'))
+
+app.get('/api/hello', (req, res) => {
+    res.send("안녕하세요 ~ ")
+}) 
 
 app.post('/api/users/register', (req, res) => {
 
@@ -112,5 +116,7 @@ app.get('/api/users/logout', auth, (req, res) => {
         })
 
 })
+
+const port = 5000;
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
